@@ -8,7 +8,7 @@
 
 $ErrorActionPreference = "Stop"
 
-$REGION = "us-central1"
+$REGION = "asia-south1"
 $ARTIFACT_REPO = "northgate-repo"
 $SA_NAME = "github-actions-northgate"
 

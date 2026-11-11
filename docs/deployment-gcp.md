@@ -59,7 +59,7 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com iam.go
 # Create the Artifact Registry Docker repository
 gcloud artifacts repositories create northgate-repo \
   --repository-format=docker \
-  --location=us-central1 \
+  --location=asia-south1 \
   --description="Project Northgate Docker repository"
 
 # Create a Service Account for GitHub Actions
