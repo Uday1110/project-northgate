@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Northgate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "secondary-fixed": "#dbe1ff",
+              "surface-container-high": "#dce9ff",
+              "tertiary-fixed-dim": "#b9c7df",
+              "on-primary-fixed-variant": "#324866",
+              "outline": "#74777e",
+              "outline-variant": "#c4c6ce",
+              "on-background": "#0b1c30",
+              "on-surface-variant": "#44474d",
+              "primary-fixed": "#d4e3ff",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#213145",
+              "primary-container": "#0f2744",
+              "tertiary-container": "#192739",
+              "surface-container-low": "#eff4ff",
+              "surface-container-lowest": "#ffffff",
+              "primary": "#001229",
+              "error": "#ba1a1a",
+              "surface-dim": "#cbdbf5",
+              "on-tertiary-container": "#808ea4",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#021c39",
+              "inverse-primary": "#b2c8ed",
+              "surface-tint": "#4a5f7f",
+              "on-secondary-container": "#fefcff",
+              "on-surface": "#0b1c30",
+              "surface-container-highest": "#d3e4fe",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#eaf1ff",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#3a485b",
+              "surface-bright": "#f8f9ff",
+              "on-primary-container": "#798fb1",
+              "surface-variant": "#d3e4fe",
+              "primary-fixed-dim": "#b2c8ed",
+              "secondary": "#0051d5",
+              "surface": "#f8f9ff",
+              "on-secondary-fixed": "#00174b",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#0d1c2e",
+              "background": "#f8f9ff",
+              "tertiary": "#041223",
+              "secondary-fixed-dim": "#b4c5ff",
+              "on-secondary-fixed-variant": "#003ea8",
+              "secondary-container": "#316bf3",
+              "tertiary-fixed": "#d5e3fc",
+              "surface-container": "#e5eeff",
+              "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.125rem",
+              "lg": "0.25rem",
+              "xl": "0.5rem",
+              "full": "0.75rem"
+            },
+            "spacing": {
+              "space-sm": "0.375rem",
+              "space-xl": "1.5rem",
+              "gutter-desktop": "1rem",
+              "space-xs": "0.25rem",
+              "margin-desktop": "1.5rem",
+              "space-lg": "1rem",
+              "margin": "1rem",
+              "gutter": "0.75rem",
+              "space-md": "0.75rem"
+            },
+            "fontFamily": {
+              "body-md": ["Inter", "sans-serif"],
+              "headline-sm": ["Inter", "sans-serif"],
+              "headline-lg": ["Inter", "sans-serif"],
+              "tabular-mono-sm": ["JetBrains Mono", "monospace"],
+              "headline-xl": ["Inter", "sans-serif"],
+              "tabular-mono": ["JetBrains Mono", "monospace"],
+              "body-sm": ["Inter", "sans-serif"],
+              "headline-md": ["Inter", "sans-serif"],
+              "body-lg": ["Inter", "sans-serif"],
+              "label-md": ["Inter", "sans-serif"],
+              "label-sm": ["Inter", "sans-serif"]
+            },
+            "fontSize": {
+              "body-md": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0", "fontWeight": "400" }],
+              "headline-sm": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "0", "fontWeight": "600" }],
+              "headline-lg": ["1.375rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+              "tabular-mono-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.01em", "fontWeight": "500" }],
+              "headline-xl": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+              "tabular-mono": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0", "fontWeight": "400" }],
+              "body-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+              "headline-md": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+              "body-lg": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "0", "fontWeight": "400" }],
+              "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "600" }],
+              "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.035em", "fontWeight": "600" }]
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      @layer base {
+        html, body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Inter', sans-serif;
+        }
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
