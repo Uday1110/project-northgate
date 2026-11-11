@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  GCP_REGION: us-central1
+  GCP_REGION: ${{ vars.GCP_REGION || 'us-central1' }}
   ARTIFACT_REPO: northgate-repo
   BACKEND_SERVICE_NAME: northgate-backend
   FRONTEND_SERVICE_NAME: northgate-frontend
