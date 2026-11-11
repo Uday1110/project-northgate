@@ -78,6 +78,15 @@ jobs:
         run: |
           echo "Authenticated project: ${{ steps.auth.outputs.project_id }}"
           gcloud config set project ${{ steps.auth.outputs.project_id }}
+
+          echo "Ensuring Artifact Registry repository exists in ${{ env.GCP_REGION }}..."
+          gcloud artifacts repositories create ${{ env.ARTIFACT_REPO }} \
+            --repository-format=docker \
+            --location=${{ env.GCP_REGION }} \
+            --description="Docker repository for Project Northgate" \
+            --project=${{ steps.auth.outputs.project_id }} \
+            --quiet || echo "Repository ${{ env.ARTIFACT_REPO }} already exists or is ready."
+
           gcloud auth configure-docker ${{ env.GCP_REGION }}-docker.pkg.dev --quiet
 
       # Step 4: Build & Push Backend Docker Image
