@@ -27,6 +27,7 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy built assets from builder
 COPY --from=build /app/dist /usr/share/nginx/html
+RUN chmod -R 755 /usr/share/nginx/html
 
 # Copy custom nginx configuration (listening on 8080 for GCP Cloud Run)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
