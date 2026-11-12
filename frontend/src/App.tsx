@@ -8,6 +8,9 @@ import { RegistryReconciliation } from './pages/RegistryReconciliation';
 import { SourceDocumentViewer } from './pages/SourceDocumentViewer';
 import { DeficiencyPunchList } from './pages/DeficiencyPunchList';
 import { AuditTrail } from './pages/AuditTrail';
+import { ToastProvider } from './context/ToastContext';
+import { UploadBundleModal } from './components/modals/UploadBundleModal';
+import { CaseInspectionModal } from './components/modals/CaseInspectionModal';
 
 export function App() {
   // Initialize path from window.location.hash or fallback to default
@@ -20,6 +23,9 @@ export function App() {
   };
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [isCaseInspectionOpen, setIsCaseInspectionOpen] = useState(false);
+  const [customCases, setCustomCases] = useState<any[]>([]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -38,11 +44,22 @@ export function App() {
     window.scrollTo(0, 0);
   };
 
+  const handleCaseCreated = (newCase: any) => {
+    setCustomCases((prev) => [newCase, ...prev]);
+  };
+
   const renderCurrentPage = () => {
     switch (currentPath) {
       case '/':
       case '/intake-queue':
-        return <IntakeQueue onNavigate={navigate} />;
+        return (
+          <IntakeQueue
+            onNavigate={navigate}
+            onOpenUpload={() => setIsUploadModalOpen(true)}
+            onOpenCaseInspection={() => setIsCaseInspectionOpen(true)}
+            customCases={customCases}
+          />
+        );
       case '/processing-state':
         return <ProcessingState onNavigate={navigate} />;
       case '/ownership-workbench':
@@ -56,20 +73,50 @@ export function App() {
       case '/audit-trail':
         return <AuditTrail onNavigate={navigate} />;
       default:
-        return <IntakeQueue onNavigate={navigate} />;
+        return (
+          <IntakeQueue
+            onNavigate={navigate}
+            onOpenUpload={() => setIsUploadModalOpen(true)}
+            onOpenCaseInspection={() => setIsCaseInspectionOpen(true)}
+            customCases={customCases}
+          />
+        );
     }
   };
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col font-body-md text-on-surface">
-      <Header currentPath={currentPath} />
-      <div className="flex pt-14">
-        <Sidebar currentPath={currentPath} onNavigate={navigate} />
-        <main className="ml-64 flex-1 pb-12 min-h-[calc(100vh-3.5rem)]">
-          {renderCurrentPage()}
-        </main>
+    <ToastProvider>
+      <div className="min-h-screen bg-[#f8f9ff] flex flex-col font-body-md text-on-surface w-full overflow-x-hidden">
+        {/* Fixed Header */}
+        <Header
+          currentPath={currentPath}
+          onOpenUpload={() => setIsUploadModalOpen(true)}
+          onOpenCaseInspection={() => setIsCaseInspectionOpen(true)}
+        />
+
+        {/* Main Body with Fixed Sidebar */}
+        <div className="flex pt-14 w-full">
+          <Sidebar currentPath={currentPath} onNavigate={navigate} />
+          <main className="ml-64 flex-1 min-w-0 pb-12 min-h-[calc(100vh-3.5rem)] w-[calc(100%-16rem)] overflow-x-hidden">
+            {renderCurrentPage()}
+          </main>
+        </div>
+
+        {/* Global Modals */}
+        <UploadBundleModal
+          isOpen={isUploadModalOpen}
+          onClose={() => setIsUploadModalOpen(false)}
+          onCaseCreated={handleCaseCreated}
+          onNavigate={navigate}
+        />
+
+        <CaseInspectionModal
+          isOpen={isCaseInspectionOpen}
+          onClose={() => setIsCaseInspectionOpen(false)}
+          onNavigate={navigate}
+        />
       </div>
-    </div>
+    </ToastProvider>
   );
 }
 
